@@ -1,0 +1,179 @@
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    //group add limit
+    var maxGroup = 4;
+
+    //add more fields group
+    $(".addMore").click(function(){
+        // $('form').find("#me").css( "color", "red" );
+        if($('fieldset').find(".eyob-group").length < maxGroup){
+            var fieldHTML = '<div class="eyob-group fieldeyob" >'+$(".fieldeyobcopy").html()+'</div>';
+            $('fieldset').find('.eyob-group:last').after(fieldHTML);
+        }else{
+            alert('Maximum '+maxGroup+' groups are allowed.');
+        }
+    });
+
+    //remove fields group
+    $("body").on("click",".remove",function(){
+        $(this).parents(".eyob-group").remove();
+    });
+});
+</script>
+</head>
+
+<!--head -->
+
+<div class="container">
+	<div class="row">
+	<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Registration Form</legend>
+<div class="eyob-group fieldeyob" id="me">
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Last Name</label>
+  <div class="col-md-5">
+  <input id="lastname" name="lastname" type="text" placeholder="Your last name" class="form-control input-md" required="">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">First Name</label>
+  <div class="col-md-5">
+  <input id="firstname" name="firstname" type="text" placeholder="Your first name" class="form-control input-md" required="">
+
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">City</label>
+  <div class="col-md-5">
+  <input id="city" name="city" type="text" placeholder="city" class="form-control input-md" required="">
+
+  </div>
+</div>
+<div class="input-group-addon">
+<a href="javascript:void(0)" class="btn btn-success addMore">
+<span class="glyphicon glyphicon glyphicon-plus" aria-hidden="true"></span> Add</a>
+</div>
+</div>
+<div class="eyob-group fieldeyobcopy" id="me2" style="display: none;">
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="lastname">Last Name</label>
+  <div class="col-md-5">
+  <input id="lastname" name="lastname" type="text" placeholder="Your last name" class="form-control input-md" required="">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">First Name</label>
+  <div class="col-md-5">
+  <input id="firstname" name="firstname" type="text" placeholder="Your first name" class="form-control input-md" required="">
+
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="firstname">City</label>
+  <div class="col-md-5">
+  <input id="city" name="city" type="text" placeholder="city" class="form-control input-md" required="">
+
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="email">Email</label>
+  <div class="col-md-5">
+  <input id="email" name="email" type="text" placeholder="Your email here" class="form-control input-md" required="">
+  <span class="help-block">xxxxxxxxx@xxxxx.xxx</span>
+  </div>
+</div>
+<div class="input-group-addon">
+		<a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
+</div>
+
+</div>
+<!--  -->
+
+
+
+<!-- Emergency Contact Section -->
+          <!-- Form Name -->
+          <legend>Emergency Contact Information</legend>
+          <!-- Text input-->
+          <div class="form-group">
+            <div class="col-sm-4">
+              <input type="text" name="eFistName" placeholder="First Name" class="form-control">
+            </div>
+            <div class="col-sm-2">
+              <input type="text" name="eMiddleName" placeholder="Middle Name" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="eLastName" placeholder="Last Name" class="form-control">
+            </div>
+
+          </div>
+		  <div class="form-group">
+            <div class="col-sm-2">
+              <select type="pContactMethod" placeholder="Contact Method" class="form-control">
+                <option>Contact Method</option>
+                <option value="phone">Phone</option>
+                <option value="text">Text</option>
+                <option value="email">Email</option>
+              </select>
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="ePhoneNbr" placeholder="Phone Number" class="form-control">
+            </div>
+            <div class="col-sm-4">
+              <input type="email" name="eEmail" placeholder="Email" class="form-control">
+            </div>
+           </div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="gender">Gender</label>
+  <div class="col-md-4">
+    <label class="radio-inline" for="gender-0">
+      <input type="radio" name="gender" id="gender-0" value="Male" checked="checked">
+      Male
+    </label>
+    <label class="radio-inline" for="gender-1">
+      <input type="radio" name="gender" id="gender-1" value="Female">
+      Female
+    </label>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="confirmation"></label>
+  <div class="col-md-4">
+    <button id="confirmation" name="confirmation" class="btn btn-primary">Submit</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+	</div>
+</div>
