@@ -18,9 +18,15 @@ $GLOBALS['config']=array(
     'token_name'=>'token'
   )
 );
+   //require_once 'classes/Config.php';
+
 spl_autoload_register(function($class){
-     require_once 'classes/' .$class. '.php';
+     //require_once 'classes/' .$class. '.php';
+     require_once $_SERVER['DOCUMENT_ROOT']. '/amonecenter/classes/' . $class . '.php';
 });
-      require_once 'function/sanitize.php';
+      //require_once 'functions/sanitize.php';
+    require_once $_SERVER['DOCUMENT_ROOT']. '/amonecenter/functions/sanitize.php';
+
+
 
  ?>

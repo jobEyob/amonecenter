@@ -1,4 +1,21 @@
 <?php include_once '../master/header.php';  ?>
+<?php
+  if (Input::exists()) {
+   $validate = new Validate();
+  $validation = $validate->check($_POST, array(
+    'entname' => array(
+      'required' => true,
+      'min' => 2
+    )
+  ));
+
+  if ($validate->passed()) {
+    echo "sucsse";
+  }else {
+    print_r($validate->errors());
+  }
+}
+ ?>
 
               <style>
                /* #kits3 fieldset {
@@ -11,11 +28,14 @@
 
       <div class="container">
          <br>
+
          <div class="row">
             <div class="col-sm-2">
+              <h1>review
+
             </div>
       <div class="col-sm-9">
-    <form id="kits3" action="action.php" >
+    <form id="kits3" action=" " method="post" >
         <div class="card">
           <fieldset id="first">
             <div class="card-header text-center"><h5>ኢንተርፕራይዞችን መመዝገብያ ቅጽ 003 </h5></div>
@@ -24,7 +44,7 @@
                 <div class="form-group row">
                   <label for="name" class="col-sm-3 col-form-label">የኢንተርፕራይዙ ስም</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="name" placeholder="የኢንተርፕራይዙ ስም" value="">
+                    <input type="text" class="form-control" name="entname" id="name" placeholder="የኢንተርፕራይዙ ስም" value="">
                   </div>
                 </div>
 

@@ -27,7 +27,34 @@ include_once ('master/header.php');
       </div>
      </div>
     </div>
+  <?php
+     //$user = DB::getInstance()->query("SELECT * FROM users WHERE username = ?", array('job'));
 
+     //$user = DB::getInstance();
+    //  $user->get('users', array('username', '=', 'job'));
+    //
+    // if(!$user->count()){
+    //   echo "no user";
+    // }else {
+    //  // print_r($user->results());
+    // // echo "<br>";
+    // // $data=$user->results()[0]->username;
+    // // echo $data;
+    // //  echo $user->first()->password;
+    // // foreach ($data as $value) {
+    // // echo  $value->name;
+    // // echo "<br>";
+    // // echo "email= ".$value->email;
+    // // }
+    // }
+    // $db = DB::getInstance();
+    //
+    // $db->update('users', 'id', 6 , array(
+    //   'name'    =>'TILEL',
+    //   'email'   =>'mikls@gmail.com'
+    //  ));
+
+   ?>
 
   <div class="container bg-secondary text-white text-center ">
   <h3>ምን ምን ሰራን</h3><br>

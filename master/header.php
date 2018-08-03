@@ -1,3 +1,5 @@
+<?php //require_once 'core/init.php'; ?>
+<?php require_once $_SERVER['DOCUMENT_ROOT']. '/amonecenter/core/init.php';   ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
