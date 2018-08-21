@@ -6,11 +6,13 @@ body
     background-size: cover;
     padding: 0;
     margin: 0;
+    /* background-color: #35404a  !important; */
+
 }
 
 .wrap
 {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
     min-height: 100%;
     position: absolute;
@@ -22,13 +24,13 @@ body
 p.form-title
 {
     font-family: 'Open Sans' , sans-serif;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 400;
     text-align: center;
-    color: #FFFFFF;
-    margin-top: 5%;
+
+    /* margin-top: 5%; */
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
 }
 
 form
@@ -42,7 +44,7 @@ form.login input[type="text"], form.login input[type="password"]
     width: 100%;
     margin: 0;
     padding: 5px 10px;
-    background: 0;
+    /* background: 0; */
     border: 0;
     border-bottom: 1px solid #FFFFFF;
     outline: 0;
@@ -50,8 +52,8 @@ form.login input[type="text"], form.login input[type="password"]
     font-size: 12px;
     font-weight:  bold;
     letter-spacing: 1px;
-    margin-bottom: 5px;
-    color: #FFFFFF;
+    margin-bottom: 14px;
+    color: #250808;;
     outline: 0;
 }
 
@@ -171,16 +173,7 @@ form.login a:hover
 {
     transition: background-color 0.5s ease;
 }
-.posted-by
-{
-    position: absolute;
-    bottom: 26px;
-    margin: 0 auto;
-    color: #FFF;
-    background-color: rgba(0, 0, 0, 0.66);
-    padding: 10px;
-    left: 45%;
-}
+
 #arbaminch {
   background-color:royalblue;
 

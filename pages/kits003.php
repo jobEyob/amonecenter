@@ -5,13 +5,110 @@
   $validation = $validate->check($_POST, array(
     'entname' => array(
       'required' => true,
-      'min' => 2
+      'min' => 2,
+    // 'unique' => 'Enterprises'
     )
+    // ,
+    // 'zone' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'woreda' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'ketema' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'kebele' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'homeNo' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'phoneNo' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'Fyear' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'zerif' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'workarea' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'worktype' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'goruptype' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'TINno' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'Glevel' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'initialcaptal' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'manysource' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // ),
+    // 'curentcaptal' => array(
+    //   'required' => true,
+    //   'min' => 2
+    // )
   ));
 
   if ($validate->passed()) {
-    echo "sucsse";
-  }else {
+    ///echo "sucsse";
+    $user = new User();
+    try {
+      $FnameArr = Input::get('firstname');
+      $MnameArr = Input::get('midlename');
+      $LnameArr = Input::get('lastname');
+
+      //print_r($FnameArr);
+      if (!empty($FnameArr)) {
+          for ($i=0; $i < count($FnameArr); $i++) {
+            if(!empty($FnameArr[$i])){
+
+            $firstname = $FnameArr[$i];
+            $midletname = $MnameArr[$i];
+            $lastname = $LnameArr[$i];
+
+            //$db = DB::getInstance();
+
+            $user->create('Ent_owner', array(
+              'firstname' => $firstname,
+              'midlename' => $midletname,
+              'lastname'  => $lastname
+            ));
+          }
+        }
+      }
+      Session::flash('success', "registeration successfully");
+      header('location: tests.php');
+    } catch (Exception $e) {
+      die($e->getMessage());
+    }
+  }
+  else {
     print_r($validate->errors());
   }
 }
@@ -30,11 +127,10 @@
          <br>
 
          <div class="row">
-            <div class="col-sm-2">
-              <h1>review
-
+            <div class="col">
+            
             </div>
-      <div class="col-sm-9">
+      <div class="col-10">
     <form id="kits3" action=" " method="post" >
         <div class="card">
           <fieldset id="first">
@@ -44,22 +140,22 @@
                 <div class="form-group row">
                   <label for="name" class="col-sm-3 col-form-label">የኢንተርፕራይዙ ስም</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="entname" id="name" placeholder="የኢንተርፕራይዙ ስም" value="">
+                    <input type="text" class="form-control" name="entname" id="name" placeholder="የኢንተርፕራይዙ ስም" value="<?php echo escape(Input::get('entname')); ?>" >
                   </div>
                 </div>
 
                 <div class="form-row">
                   <div class="form-group col-md-3">
                     <label for="inputzone">ዞን</label>
-                    <input type="text" class="form-control" id="inputzone" placeholder="ዞን">
+                    <input type="text" class="form-control" name="zone" id="inputzone" placeholder="ዞን" value="<?php echo escape(Input::get('zone')); ?>" >
                   </div>
                   <div class="form-group col-md-5">
                     <label for="inputworeda">ወረዳ</label>
-                    <input type="text" class="form-control" id="inputworeda" placeholder="ወረዳ">
+                    <input type="text" class="form-control" name="woreda" id="inputworeda" placeholder="ወረዳ" value="<?php echo escape(Input::get('woreda')); ?>" >
                   </div>
                   <div class="form-group col-md-4">
                     <label for="inputketema">ከተማ/ክፍለ ከተማ</label>
-                    <select class="custom-select mr-sm-2" id="inputketema">
+                    <select class="custom-select mr-sm-2" id="inputketema" name="ketema" >
                       <option selected>ምረጥ...</option>
                       <option value="1">ሲቀላ</option>
                       <option value="2">ሰቻ</option>
@@ -75,25 +171,25 @@
               <div class="form-row">
                 <div class="col-4">
                   <label for="inputkebele">ቀበሌ</label>
-                  <input type="text" class="form-control" placeholder="ቀበሌ">
+                  <input type="text" class="form-control" name="kebele" placeholder="ቀበሌ" value="<?php echo escape(Input::get('kebele')); ?>" >
                 </div>
                 <div class="col">
                   <label for="inputhomeno">የቤት ቁጥር</label>
-                  <input type="text" class="form-control" placeholder="የቤት ቁጥር">
+                  <input type="text" class="form-control" name="homeNo" placeholder="የቤት ቁጥር" value="<?php echo escape(Input::get('homeNo')); ?>" >
                 </div>
                 <div class="col">
                   <label for="inputphoneno">ስልክ ቁጥር</label>
-                  <input type="text" class="form-control" placeholder="ስልክ ቁጥር">
+                  <input type="text" class="form-control" name="phoneNo" placeholder="ስልክ ቁጥር" value="<?php echo escape(Input::get('phoneNo')); ?>" >
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputyear">የተመሠረተበት ዘመን (ዓ.ም)</label>
-                  <input type="text" class="form-control" id="inputzone" placeholder="የተመሠረተበት ዘመን (ዓ.ም)">
+                  <input type="text" class="form-control" id="inputzone" name="Fyear" placeholder="የተመሠረተበት ዘመን (ዓ.ም)" value="<?php echo escape(Input::get('Fyear')); ?>" >
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="inputketema">የተሰማራበት ዘርፍ</label>
-                  <select class="custom-select mr-sm-2" id="inputketema">
+                  <label for="inputzerif">የተሰማራበት ዘርፍ</label>
+                  <select class="custom-select mr-sm-2" id="inputzerif" name="zerif" >
                     <option selected>ምረጥ...</option>
                     <option value="1">ማኑፋክቸሪንግ</option>
                     <option value="2">ኮንስትራክሽን</option>
@@ -106,13 +202,13 @@
               <div class="form-group row">
                 <label for="inputworkarea" class="col-sm-3 col-form-label">የተሰማራት የሥራ መስክ</label>
                 <div class="col-sm-9">
-                  <input type=" " class="form-control" id="inputworkarea" placeholder="የተሰማራት የሥራ መስክ">
+                  <input type=" " class="form-control" id="inputworkarea" name="workarea" placeholder="የተሰማራት የሥራ መስክ" value="<?php echo escape(Input::get('workarea')); ?>" >
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputworktype" class="col-sm-3 col-form-label">የኢንተርፕራይዙ ዓይነት ነትርጓሜ </label>
                 <div class="col-sm-9">
-                  <select class="custom-select mr-sm-2" id="inputworktype">
+                  <select class="custom-select mr-sm-2" id="inputworktype" name="worktype" >
                     <option selected>ምረጥ...</option>
                     <option value="1">ጥቃቅን</option>
                     <option value="2">አነስተኛ</option>
@@ -123,7 +219,7 @@
               <div class="form-group row">
                 <label for="inputgoruptype" class="col-sm-3 col-form-label">የአደረጃጀት ዓይነት</label>
                 <div class="col-sm-9">
-                  <select class="custom-select mr-sm-2" id="inputworktype">
+                  <select class="custom-select mr-sm-2" id="inputgoruptype" name="goruptype" >
                     <option selected>ምረጥ...</option>
                     <option value="1">በግል</option>
                     <option value="2">በንግድ ማህበር/በህ/ሴ/ማ</option>
@@ -132,12 +228,12 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputtaxno">የግብር ከፋይነት መለያ ቁጥር</label>
-                  <input type=" " class="form-control" id="inputtaxno" placeholder="የግብር ከፋይነት መለያ ቁጥር ..">
+                  <label for="inputTINno">የግብር ከፋይነት መለያ ቁጥር</label>
+                  <input type=" " class="form-control" id="inputTINno" name="TINno" placeholder="የግብር ከፋይነት መለያ ቁጥር ..">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="inputketema">የዕድገት ደረጃ</label>
-                  <select class="custom-select mr-sm-2" id="inputketema">
+                  <label for="inputlevel">የዕድገት ደረጃ</label>
+                  <select class="custom-select mr-sm-2" id="inputketema" name="Glevel" >
                     <option selected>ምረጥ...</option>
                     <option value="1">አነስ/ጀማሪ</option>
                     <option value="3">አነስ/ታዳጊ</option>
@@ -150,11 +246,11 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputcaptal">መነሻ ጠቅላላ የሃብት መጠን</label>
-                  <input type="" class="form-control" id="inputcaptal" placeholder="የመነሻ ጠቅላላ የሃብት መጠን ..">
+                  <input type="" class="form-control" id="inputcaptal" name="initialcaptal" placeholder="የመነሻ ጠቅላላ የሃብት መጠን .." value="<?php echo escape(Input::get('initialcaptal')); ?>" >
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="manysours">የገንዘብ ምንጭ</label>
-                  <select class="custom-select mr-sm-2" id="manysours">
+                  <label for="manysource">የገንዘብ ምንጭ</label>
+                  <select class="custom-select mr-sm-2" id="manysource" name="manysource">
                     <option selected>ምረጥ...</option>
                     <option value="1">ከራስ ተቀማጭ</option>
                     <option value="3">ከቤተሰብ</option>
@@ -164,9 +260,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputcurentcaptal" class="col-sm-3 col-form-label">ወቅታዊ ጠቅላላ ሃብት መጠን</label>
+                <label for="curentcaptal" class="col-sm-3 col-form-label">ወቅታዊ ጠቅላላ ሃብት መጠን</label>
                 <div class="col-sm-9">
-                  <input type="" class="form-control" id="inputcurentcaptal" placeholder="ወቅታዊ ጠቅላላ ሃብት መጠን ..">
+                  <input type="" class="form-control" id="curentcaptal" name="curentcaptal" placeholder="ወቅታዊ ጠቅላላ ሃብት መጠን .." value="<?php echo escape(Input::get('curentcaptal')); ?>" >
                 </div>
               </div>
 
@@ -206,15 +302,15 @@
               <div class="form-row">
                 <div class="col-4">
                   <label for="firstname">ስም</label>
-                  <input type="text" class="form-control" placeholder="የግለሰቡ/ቡዋ ስም">
+                  <input type="text" class="form-control" name="firstname[]" placeholder="የግለሰቡ/ቡዋ ስም"  >
                 </div>
                 <div class="col">
                   <label for="midlename">የአባት ስም</label>
-                  <input type="text" class="form-control" placeholder="የአባት ስም ">
+                  <input type="text" class="form-control" name="midlename[]" placeholder="የአባት ስም "  >
                 </div>
                 <div class="col">
                   <label for="lastname">የአያት ስም</label>
-                  <input type="text" class="form-control" placeholder="የአያት ስም ..">
+                  <input type="text" class="form-control" name="lastname[]" placeholder="የአያት ስም .."  >
                 </div>
               </div>
               <!--  --><br>
@@ -224,7 +320,7 @@
                 </div>
                 <div class="col-2">
 
-                  <select class="custom-select mr-sm-2" id="gender">
+                  <select class="custom-select mr-sm-2" id="gender" name="gender[]" >
                     <option selected>ምረጥ...</option>
                     <option value="1">ሴት</option>
                     <option value="3">ወንድ</option>
@@ -235,14 +331,14 @@
                   <label for="age">ዕድመ</label>
                 </div>
                 <div class="col-2">
-                  <input  class="form-control" placeholder="ዕድመ" >
+                  <input  class="form-control" placeholder="ዕድመ" name="age[]"  >
                 </div>
               </div>
               <!-- end --> <br>
               <div class="form-row">
                 <label for="eduationlevel" class="col-sm-2 col-form-label">የትም/ደረጃ</label>
                 <div class="col-sm-6">
-                  <select class="custom-select mr-sm-2" id="eduationlevel">
+                  <select class="custom-select mr-sm-2" id="eduationlevel" name="eduationlevel[]" >
                     <option selected>ምረጥ...</option>
                     <option value="1">ማንበብና መፃፍ የማይችሉ</option>
                     <option value="2">አንደኛ ደረጃ(1-8)</option>
@@ -253,9 +349,9 @@
               </div>
               <br>
               <div class="form-row">
-                <label for="eduationlevel" class="col-sm-2 col-form-label"> የግለሰቡ/ቡዋ ፎቶግራፍ </label>
+                <label for="photo" class="col-sm-2 col-form-label"> የግለሰቡ/ቡዋ ፎቶግራፍ </label>
                 <div class="col-sm-6">
-                  <input  class="form-control" type="file" placeholder="" >
+                  <input  class="form-control" name="photo[]" type="file" placeholder="" >
                 </div>
               </div>
               <div class="form-row"> <!-- this for align button to right  -->
@@ -280,15 +376,15 @@
                <div class="form-row">
                  <div class="col-4">
                    <label for="firstname">ስም</label>
-                   <input type="text" class="form-control" placeholder="የግለሰቡ/ቡዋ ስም">
+                   <input type="text" class="form-control" name="firstname[]" placeholder="የግለሰቡ/ቡዋ ስም"  >
                  </div>
                  <div class="col">
                    <label for="midlename">የአባት ስም</label>
-                   <input type="text" class="form-control" placeholder="የአባት ስም ">
+                   <input type="text" class="form-control" name="midlename[]" placeholder="የአባት ስም "  >
                  </div>
                  <div class="col">
                    <label for="lastname">የአያት ስም</label>
-                   <input type="text" class="form-control" placeholder="የአያት ስም ..">
+                   <input type="text" class="form-control" name="lastname[]" placeholder="የአያት ስም .."  >
                  </div>
                </div>
                <!--  --><br>
@@ -298,7 +394,7 @@
                  </div>
                  <div class="col-2">
 
-                   <select class="custom-select mr-sm-2" id="gender">
+                   <select class="custom-select mr-sm-2" id="gender" name="gender[]" >
                      <option selected>ምረጥ...</option>
                      <option value="1">ሴት</option>
                      <option value="3">ወንድ</option>
@@ -309,20 +405,26 @@
                    <label for="age">ዕድመ</label>
                  </div>
                  <div class="col-2">
-                   <input  class="form-control" placeholder="ዕድመ" >
+                   <input  class="form-control" placeholder="ዕድመ" name="age[]"  >
                  </div>
                </div>
                <!-- end --> <br>
                <div class="form-row">
                  <label for="eduationlevel" class="col-sm-2 col-form-label">የትም/ደረጃ</label>
                  <div class="col-sm-6">
-                   <select class="custom-select mr-sm-2" id="eduationlevel">
+                   <select class="custom-select mr-sm-2" id="eduationlevel" name="eduationlevel[]" >
                      <option selected>ምረጥ...</option>
                      <option value="1">ማንበብና መፃፍ የማይችሉ</option>
                      <option value="2">አንደኛ ደረጃ(1-8)</option>
                      <option value="3">ሁለተኛ ደረጃ(9-12)</option>
                      <option value="4">ኮሌጅ ወይም ዩኒቨርሲቲ ያጠናቀቀ</option>
                    </select>
+                 </div>
+               </div>
+              <div class="form-row">
+                 <label for="photo" class="col-sm-2 col-form-label"> የግለሰቡ/ቡዋ ፎቶግራፍ </label>
+                 <div class="col-sm-6">
+                   <input  class="form-control" name="photo[]" type="file" placeholder="" >
                  </div>
                </div>
                <div class="form-row"> <!-- this for align button to right  -->
@@ -348,6 +450,7 @@
 
             </div>
             <div class="col">
+        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
          <button type="submit" class="btn btn-info" > submit</button>
             </div>
           </div>
@@ -357,7 +460,7 @@
      </div>  <!-- main card end -->
      </form>  <!-- form end -->
     </div> <!-- col end  -->
-            <div class="col-sm-1">
+            <div class="col">
             </div>
          </div>
          <br>

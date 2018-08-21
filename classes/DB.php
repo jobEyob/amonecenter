@@ -133,7 +133,7 @@ class DB {
 
   public function delete($table, $where ){
 
-      $this->action('DELETE *', $table, $where );
+      $this->action('DELETE', $table, $where );
   }
 
   public function error() {
@@ -141,9 +141,7 @@ class DB {
     return $this->_error;
   }
 
-  public function count() {
-    return $this->_count;
-  }
+
    public function first(){
      return $this->results()[0];
    }
@@ -151,6 +149,10 @@ class DB {
   public function results(){
 
     return $this->_results;
+  }
+
+  public function count() {
+    return $this->_count;
   }
 
 }

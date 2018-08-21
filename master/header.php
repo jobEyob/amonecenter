@@ -10,11 +10,12 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href=" /amonecenter/css/master_custom.css">
  <script src=" /amonecenter/js/costome_js.js"> </script>
 </head>
   <!--man navebare container  -->
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" href="/amonecenter/home.php">አንድ ማዕከል</a>
+    <a class="navbar-brand" href="/amonecenter/index.php">አንድ ማዕከል</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,6 +29,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/amonecenter/pages/kits003.php">ቅጽ 003</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/amonecenter/pages/logout.php">Logout</a>
         </li>
       </ul>
     </div>
