@@ -6,17 +6,18 @@ include_once ('master/header.php');
  $user = new User();
  if(!$user->isLoggendIn()) {
    Redirect::to(' page-login.php');
-}else {
+}
+else {
   if($user->hasPermission()){
      $type = $user->Permission()->permisstion;
 
      if ($type == "admin") {
        //echo "wow adminstroter";
-       Redirect::to('admin/page-admin/create.php');
+       Redirect::to('admin/page-admin/index.php');
      }elseif ($type == "monitor") {
        Redirect::to('admin/monitor/index.php');
      }else {
-       echo "you are stardared user";
+       //echo "you are stardared user";
      }
   }
 }

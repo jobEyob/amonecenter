@@ -1,14 +1,14 @@
 
     <link rel="shortcut icon" href="amonecenter/images/ico.ico">
     <style media="screen">
-      *{padding: 0px;margin: 0px;font-family:"Gotham A", Gotham, "Gotham SSm A", "Gotham SSm B", "Gotham SSm", "Proxima Nova", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight: lighter;background:#fff ;
-      }
+      /* *{padding: 0px;margin: 0px;font-family:"Gotham A", Gotham, "Gotham SSm A", "Gotham SSm B", "Gotham SSm", "Proxima Nova", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight: lighter;background:#fff ;
+      } */
       .div{
         width:60%;
         height: auto;
         background: #eee;
         position: relative;
-        top: 150px;
+        top: 60px;
         margin: auto;
         padding: 80px 40px;
         box-shadow: 0 2px 5px rgba(0,0,0,.26);
@@ -33,8 +33,8 @@
         background: #FFAB91;
       }
     </style>
-  </head>
-  <body>
+
+
 
 
     <div class="div">
@@ -43,7 +43,7 @@
 
 
         <p>Sorry, The page you have requested has either been moved or does not exist.</p><br>
-        <a class="back" href="/home.php">Back to Home</a>
+        <a class="back" href=" ">errors</a>
 
 
     </div>

@@ -107,9 +107,13 @@ class User{
 
     }
   }
+  public function lasteinsertedID(){
+
+       return  $this->_db->lastID();
+  }
 
 public function update($tabel, $fields =array(), $id=null){
-          if(!$id && $this->isLoggedIn()){
+          if(!$id && $this->isLoggendIn()){
               $id= $this->data()->id;
           }
           if (!$this->_db->update($tabel,'id', $id, $fields)){
@@ -118,7 +122,7 @@ public function update($tabel, $fields =array(), $id=null){
     }
 
     public function hasPermission(){
-          $group= $this->_db->get('groups', array('id', '=', $this->data()->groups));
+          $group= $this->_db->get('groups', array('id', '=', $this->data()->group_id)); //group_id from users tabel
           //print_r($this->_db->first());
           if($this->_db->count()){
             //$parmisstion= json_decode( $this->_db->first()->permisstion, true);

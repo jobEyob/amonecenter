@@ -20,9 +20,9 @@
 
     </div>
     <div class="col-3">
-      <div id="arbaminch" >
+      <!-- <div id="arbaminch" >
     	<p class="system-title"> አርባምንጭ አንድ ማዕከል</p>
-      </div>
+      </div> -->
     </div>
     <div class="col-5">
 
@@ -31,7 +31,7 @@
 
     <div class="row">
         <div class="col">  </div>
-        <div class="col-4">
+        <div class="col-3">
 
       <?php include 'pages/login.php'; ?>
 

@@ -5,7 +5,9 @@ class DB {
               $_query,
               $_error = false,
               $_results,
-              $_count = 0;
+              $_count = 0,
+              $_lastid;
+      private $filde1="", $value1=""; // for joinget() funnction
 
       private function __construct()  {
         try {
@@ -35,7 +37,7 @@ class DB {
             foreach ($params as $param) {
               $this->_query->bindValue($x , $param);
               $x++;
-            // print_r($this->_query);
+            //print_r($this->_query);
             }
           }
 
@@ -43,6 +45,7 @@ class DB {
 
             $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
             $this->_count = $this->_query->rowCount();
+            $this->_lastid = $this->_pdo->lastInsertId();
 
           }else {
             $this->_error = true;
@@ -77,11 +80,58 @@ class DB {
 
   }
 
-  public function get($table, $where ){
+  public function get($table, $where ){   //by WHERE  condtion
 
       $this->action('SELECT *',  $table, $where );
       //print_r($where);
   }
+
+  public function getAll($filde,$table){  // with out WHERE case
+       $sql="SELECT {$filde} FROM {$table}";
+       if($this->query($sql)){
+           return true;
+       }
+       return false;
+   }
+
+   public function joinget($filde1, $value1){   // INNER JOIN
+       //$sql="SELECT {$filde} FROM {$table}";
+  $sql="SELECT `Enterprises`.`*`, `Ent_address`.`*`,`Ent_asset`.`*`,
+               `Ent_organized_type`.`*`,`Ent_type_meaning`.`*`,
+               `Ent_zerif`.`*`
+
+        FROM `Enterprises`
+        INNER JOIN `Ent_address` ON
+        `Enterprises`.`id` = `Ent_address`.`ent_id`
+
+        INNER JOIN `Ent_asset` ON
+        `Enterprises`.`id`= `Ent_asset`.`ent_id`
+
+        INNER JOIN `Ent_organized_type` ON
+        `Enterprises`.`id` = `Ent_organized_type`.`ent_id`
+
+        INNER JOIN `Ent_type_meaning` ON
+        `Enterprises`.`id` = `Ent_type_meaning`.`ent_id`
+
+        INNER JOIN `Ent_zerif` ON
+        `Enterprises`.`id` = `Ent_zerif`.`ent_id`
+
+                                             ";
+
+        if ($filde1 && $value1 != "") {
+           $sql .= " WHERE `Enterprises`.`$filde1` = '$value1' ";
+        }else {
+          $sql .=" WHERE 1 ";
+        }
+
+       if($this->query($sql)){
+           return true;
+       }
+       return false;
+   }
+
+
+
   public function insert($table, $fileds=array()){
 
     $keys = array_keys($fileds);
@@ -149,6 +199,11 @@ class DB {
   public function results(){
 
     return $this->_results;
+  }
+
+  public function lastID(){
+
+     return $this->_lastid;
   }
 
   public function count() {

@@ -2,7 +2,7 @@ body
 {
    /* background: url('http://farm3.staticflickr.com/2832/12303719364_c25cecdc28_b.jpg') fixed; */
     /* background: url('/C:/Users/job/Documents/arba minch one center/images/loginimage.jpg') fixed; */
-    background: url('../images/loginimage.jpg') fixed;
+    background: url('../images/zebra.jpg') fixed;
     background-size: cover;
     padding: 0;
     margin: 0;
@@ -174,11 +174,11 @@ form.login a:hover
     transition: background-color 0.5s ease;
 }
 
-#arbaminch {
+/* #arbaminch {
   background-color:royalblue;
 
-}
-p.system-title
+} */
+/* p.system-title
 {
     font-family: 'Open Sans' , sans-serif;
     font-size: 20px;
@@ -188,4 +188,11 @@ p.system-title
     margin-top: 19%;
     text-transform: uppercase;
     letter-spacing: 4px;
+} */
+.login-box {
+    /* margin-top: 120px;
+    max-width: 600px;
+    height: 320px;
+    border: 1px solid #9C9C9C; */
+    background-image: linear-gradient(to bottom, #aec1c3, #a9b5b7, #bcc5c6, #cfd5d5, #e3e5e5);
 }

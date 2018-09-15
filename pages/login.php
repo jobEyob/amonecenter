@@ -26,7 +26,20 @@ if(Token::check(Input::get('token'))){
       $login = $user->login(Input::get('username'), Input::get('password'), $remember);
       if ($login) {
         //echo "succes";
-        Redirect::to('index.php');
+        //Redirect::to('index.php');
+        if($user->hasPermission()){
+           $type = $user->Permission()->permisstion;
+
+           if ($type == "admin") {
+             //echo "wow adminstroter";
+           Redirect::to('admin/page-admin/index.php');
+           }elseif ($type == "monitor") {
+             Redirect::to('admin/monitor/index.php');
+           }else {
+            Redirect::to('index.php');
+           }
+        }
+
       }else {
         $incoract = "<p> sory. login falid</p>";
       }
@@ -54,8 +67,8 @@ if(Token::check(Input::get('token'))){
 <div class="wrap">
  <div class="card">
 
-       <div class="card-header bg-light"> <p class="form-title">Sign In</p> </div>
-   <div class="card-body bg-info ">
+       <div class="card-header bg-light"> <p class="form-title">አርባምንጭ አንድ ማዕከል</p> </div>
+   <div class="card-body login-box">
            <span class="error"> <?php echo $incoract;?></span>
        <form class="login" action="" method="post">
 
@@ -71,8 +84,8 @@ if(Token::check(Input::get('token'))){
            <div class="row">
                <div class="col-md-6">
                    <div class="checkbox">
-                       <label>
-                           <input type="checkbox" name="remember" />
+                       <label class="text-info" >
+                           <input type="checkbox" name="remember"  />
                            Remember Me
                        </label>
                    </div>
@@ -80,7 +93,7 @@ if(Token::check(Input::get('token'))){
                <div class="col-md-6 forgot-pass-content">
 
 
-     <a href="javascript:void(0)" class="forgot-pass">Forgot Password</a>
+     <a href="javascript:void(0)" class="forgot-pass text-info ">Forgot Password</a>
 
                </div>
            </div>

@@ -51,3 +51,14 @@ function next_step1() {
         $(".pr-wrap").removeClass("show-pass-reset");
       });
   });
+
+
+/*************************
+     this js for admin sidebar to toggle sidebar  *********************************
+*************************/
+
+// $(document).ready(function () {
+//     $('#sidebarCollapse').on('click', function () {   movide to footer.php
+//         $('#sidebar').toggleClass('active');
+//     });
+// });

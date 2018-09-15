@@ -14,6 +14,7 @@ class Redirect {
                 }
             }
             header('location:' . $location);
+            ob_end_flush(); 
             exit();
         }
     }
